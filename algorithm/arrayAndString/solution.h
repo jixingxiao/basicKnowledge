@@ -106,5 +106,51 @@ int* mergeSortedArray(int* array1, int len1, int* array2, int len2)
     }
     return retArray;
 }
+int partitionArray(int* array, int len, int stdVal)
+{
+    if ( array == NULL ) return -1;
+    int partPos = 0;
+    while(partPos < len )
+    {
+        if ( array[len-1] <  stdVal)
+        {
+            int tmp = array[partPos];
+            array[partPos++] = array[len-1];
+            array[len-1] = tmp;
+        }
+        else
+        {
+            len--;
+        }
+    }
+    return partPos;
+}
+void swap(int* array, int pos1, int pos2)
+{
+    int tmp = array[pos1];
+    array[pos1] = array[pos2];
+    array[pos2] = tmp;
+}
+void quickSort(int* array, int start, int end)
+{
+    if(!(start < end)) return;
+    int sPos = start;
+    int mid = (sPos + end)/2;
+    int stdPos =array[mid];
+    swap(array, sPos, mid);
+    for(int i = sPos+1; i <= end; ++i)
+    {
+        if( array[i] < stdPos )
+        {
+            swap(array, ++sPos, i);
+        }
+    }
+    swap(array, start, sPos);
+    quickSort(array, start, sPos-1);
+    quickSort(array, sPos + 1, end);
+
+
+
+}
 
 #endif // SOLUTION_H
