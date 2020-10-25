@@ -7,4 +7,5 @@ SOURCES += \
         main.cpp
 
 HEADERS += \
-    listsolution.h
+    listsolution.h \
+    stackaqueue.h
